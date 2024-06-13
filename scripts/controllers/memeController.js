@@ -31,17 +31,40 @@ function renderMeme() {
 }
 
 function onAddLine() {
-    const memeInput = document.querySelector('.meme-main-input')
-    memeInput.value = ''
-    memeInput.focus()
+    const elMemeInput = document.querySelector('.meme-main-input')
+    elMemeInput.focus()
+    elMemeInput.value = ''
     addLineToMeme()
 }
 
 function onSwitchLines() {
+    switchLines()
+    const elMemeInput = document.querySelector('.meme-main-input')
+    elMemeInput.value = getMemeText()
+    elMemeInput.focus()
 
 }
 
-function drawText(x=gCanvas.width / 2, y=gCanvas.height / 2) {
+function onInputFocus(elMemeInput) {
+    if (!getMemeLines().length) {
+        return
+    }
+    elMemeInput.value = getMemeText()
+}
+
+function onInputFocusOut(elMemeInput) {
+    elMemeInput.value = ''
+}
+
+function onDeleteLine() {
+    if (!getMemeLines.length) return
+    getMemeLines().splice(getMemeLineIndex(), 1)
+    // TODO not sure about it
+    setMemeLineIndex(Math.min(getMemeLineIndex(), getMemeLines.length - 1))
+}
+
+
+function drawText(x = gCanvas.width / 2, y = gCanvas.height / 2) {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = getMemeStrokeStyle()
     gCtx.fillStyle = setMemeFillStyle()

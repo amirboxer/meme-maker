@@ -25,9 +25,10 @@
 
         <!-- lines edit -->
         <div>
-            <input class="meme-main-input .text-caps" autofocus type="text" name="" placeholder="enter text here" oninput="onHandleMemeTextInput(this.value)">
+            <input class="meme-main-input .text-caps" autofocus type="text" name="" placeholder="enter text here" oninput="onHandleMemeTextInput(this.value)" onfocusin="onInputFocus(this)" onfocusout="onInputFocusOut(this)">
             <button class="add-line-btn .text-caps" onclick="onAddLine()">add line</button>
             <button class="switch-line-btn .text-caps" onclick="onSwitchLines()">switch line</button>
+            <button class="delete-line-btn .text-caps" onclick="onDeleteLine()">delete line</button>
         </div>
 
         <!-- font edit  -->

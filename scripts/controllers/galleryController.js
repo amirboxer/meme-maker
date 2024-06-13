@@ -8,6 +8,6 @@ function renderGallery() {
 
 
 function onImgSelect(imgSrc) {
-    setImgSrc(imgSrc)
+    setMemeImgSrc(imgSrc)
     renderMeme()
 }

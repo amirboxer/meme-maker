@@ -22,8 +22,13 @@
 			<canvas class="main-canvas" width="450" height="450"> </canvas>
         </div>
 
-        <div class="main-editor">dfsd
-            <input class="mm-text .text-caps " type="text" name="" placeholder="enter text here" oninput="handleMemeTextInput(this.value)">
+        <div class="text-editor">
+            <input class="mm-text .text-caps " type="text" name="" placeholder="enter text here" oninput="onHandleMemeTextInput(this.value)">
+            <button class="icrease-font-size" onclick="onChangefontSize(+1)">+</button>
+            <button class="decrease-font-size" onclick="onChangefontSize(-1)">-</button>
+        </div>
+        <div class="content-services">
+            <a href="" download="" class="download-link" onclick=" onDownload(this)">download</a>
         </div>
     </section>
 
@@ -41,6 +46,7 @@
         <script src="scripts/controllers/galleryController.js"></script>
         <script src="scripts/controllers/memeController.js"></script>
         <script src="scripts/main.js"></script>
+        <script src="scripts/service/content-services/upload-Download.js"></script>
     </div>
 </body>
 

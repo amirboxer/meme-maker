@@ -15,29 +15,33 @@ function onHandleMemeTextInput(txt) {
 }
 
 function onChangefontSize(changeBy) {
-    setMemeFontSize(changeBy)
-    console.log(getMemeFontSize())
+    setMemeFontSize(changeBy * 2)
     renderMeme()
 }
 
-function capitalize(txt) {
-    return txt.charAt(0).toUpperCase() + txt.substring(1)
-}
-
 function renderMeme() {
-    const memeTxt = getMemeText()
     elImg.src = getMemeImgSrc()
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
         getMemeLines().forEach((_, index) => {
-            setMemeLineInd(index)
+            setMemeLineIndex(index)
             drawText()
         })
     }
 }
 
-function drawText(x = 100, y = 100) {
-    
+function onAddLine() {
+    const memeInput = document.querySelector('.meme-main-input')
+    memeInput.value = ''
+    memeInput.focus()
+    addLineToMeme()
+}
+
+function onSwitchLines() {
+
+}
+
+function drawText(x=gCanvas.width / 2, y=gCanvas.height / 2) {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = getMemeStrokeStyle()
     gCtx.fillStyle = setMemeFillStyle()

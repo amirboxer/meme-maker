@@ -25,15 +25,27 @@ function createMemeObj(imgNum,) {
 var gMeme = {
     imgSrc: '../../style/images/empty.png',
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: '',
-            size: 40,
-            color: 'red',
-            strokeStyle: 'white',
-            fillStyle: 'red'
-        }
-    ]
+    lines: [_createDefaultText()]
+}
+
+function _createDefaultText() {
+    return {
+        txt: '',
+        size: 40,
+        strokeStyle: 'white',
+        fillStyle: 'red'
+    }
+}
+
+function addLineToMeme() {
+    const lines = getMemeLines()
+    lines.push(_createDefaultText())
+    setMemeLineIndex(lines.length - 1)
+}
+
+function switchLines() {
+    let currIndex = (getMemeLineIndex() + 1) % getMemeLines().length
+    setMemeLineIndex(currIndex)
 }
 
 // getters
@@ -42,23 +54,23 @@ function getMemeImgSrc() {
 }
 
 function getMemeText() {
-    return gMeme.lines[getMemeLineInd()].txt
+    return gMeme.lines[getMemeLineIndex()].txt
 }
 
 function getMemeFontSize() {
-    return gMeme.lines[getMemeLineInd()].size
+    return gMeme.lines[getMemeLineIndex()].size
 }
 
-function getMemeLineInd() {
+function getMemeLineIndex() {
     return gMeme.selectedLineIdx
 }
 
 function getMemeStrokeStyle() {
-    return gMeme.lines[getMemeLineInd()].strokeStyle
+    return gMeme.lines[getMemeLineIndex()].strokeStyle
 }
 
 function getMemeFillStyle() {
-    return gMeme.lines[getMemeLineInd()].fillStyle
+    return gMeme.lines[getMemeLineIndex()].fillStyle
 }
 
 function getMemeLines() {
@@ -70,23 +82,23 @@ function setMemeImgSrc(src) {
     gMeme.imgSrc = src
 }
 function setMemeLineTxt(txt) {
-    gMeme.lines[getMemeLineInd()].txt = txt
+    gMeme.lines[getMemeLineIndex()].txt = txt
 }
 
 function setMemeFontSize(changeBy) {
     getMemeFontSize
-    gMeme.lines[getMemeLineInd()].size = Math.max(gMeme.lines[getMemeLineInd()].size + changeBy, 1)
+    gMeme.lines[getMemeLineIndex()].size = Math.max(gMeme.lines[getMemeLineIndex()].size + changeBy, 1)
 }
 
 function setMemeStrokeStyle(style) {
-    gMeme.lines[getMemeLineInd()].strokeStyle = style
+    gMeme.lines[getMemeLineIndex()].strokeStyle = style
 }
 
 function setMemeFillStyle(style) {
-    gMeme.lines[getMemeLineInd()].fillStyle = style
+    gMeme.lines[getMemeLineIndex()].fillStyle = style
 }
 
-function setMemeLineInd(ind) {
+function setMemeLineIndex(ind) {
     gMeme.selectedLineIdx = ind
 }
 

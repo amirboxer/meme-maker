@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/style/css/style.css">
 </head>
 
-<body>
+<body onload="onInit()">
     <!-- header -->
     <header>
         <nav>
@@ -16,16 +16,32 @@
         </nav>
     </header>
 
-    <section>
+    <!-- editor -->
+    <section class="editor">
         <div class="canvas-container">
-            <canvas></canvas>
+			<canvas class="main-canvas" width="450" height="450"> </canvas>
+        </div>
+
+        <div class="main-editor">dfsd
+            <input class="mm-text .text-caps " type="text" name="" placeholder="enter text here" oninput="handleMemeTextInput(this.value)">
         </div>
     </section>
-    <section></section>
+
+    <!-- gallery -->
+    <section class="gallery"></section>
+    <img src="">
+
     <section></section>
 
     <!-- scripts -->
-    <script src="scripts/meme-maker.controller.js"></script>
+	<div class="scripts">
+        <script src="scripts/service/imgsSrc.js"></script>
+        <script src="scripts/service/galleyService.js"></script>
+        <script src="scripts/service/memeService.js"></script>
+        <script src="scripts/controllers/galleryController.js"></script>
+        <script src="scripts/controllers/memeController.js"></script>
+        <script src="scripts/main.js"></script>
+    </div>
 </body>
 
 </html>

@@ -23,23 +23,40 @@ function createMemeObj(imgNum,) {
 }
 
 var gMeme = {
-    imgSrc: '../../style/images/empty.png',
-    selectedLineIdx: 0,
-    lines: [_createDefaultText()]
+    imgSrc: '../../style/images/bliss.png',
+    selectedLineIdx: null,
+    lines: []
+}
+function isMemeEmptyOfLines() {
+    return (!getMemeLines().length)
+
 }
 
-function _createDefaultText() {
+function _createDefaultText(textAlign = 'center', textBaseline = 'middle', x = gCanvas.width / 2, y = gCanvas.height / 2) {
     return {
         txt: '',
         size: 40,
         strokeStyle: 'white',
-        fillStyle: 'red'
+        fillStyle: 'red',
+        textAlign: textAlign,
+        textBaseline: textBaseline,
+        x,
+        y,
     }
 }
 
 function addLineToMeme() {
     const lines = getMemeLines()
-    lines.push(_createDefaultText())
+    switch (lines.length) {
+        case 0:
+            lines.push(_createDefaultText('center', 'top', gCanvas.width / 2, 0))
+            break;
+        case 1:
+            lines.push(_createDefaultText('center', 'bottom', gCanvas.width / 2, gCanvas.height))
+            break;
+        default:
+            lines.push(_createDefaultText())
+    }
     setMemeLineIndex(lines.length - 1)
 }
 
@@ -77,6 +94,22 @@ function getMemeLines() {
     return gMeme.lines
 }
 
+function getMemeTextAlign() {
+    return gMeme.lines[getMemeLineIndex()].textAlign
+}
+
+function getMemeTextBaseline() {
+    return gMeme.lines[getMemeLineIndex()].textBaseline
+}
+
+function getMemeX() {
+    return gMeme.lines[[getMemeLineIndex()]].x
+}
+
+function getMemeY() {
+    return gMeme.lines[[getMemeLineIndex()]].y
+}
+
 // setters
 function setMemeImgSrc(src) {
     gMeme.imgSrc = src
@@ -102,3 +135,17 @@ function setMemeLineIndex(ind) {
     gMeme.selectedLineIdx = ind
 }
 
+function setMemeTextAlign(textAlign) {
+    gMeme.lines[getMemeLineIndex()].textAlign = textAlign
+}
+
+function setMemeTextBaseline(textBaseline) {
+    gMeme.lines[getMemeLineIndex()].textBaseline = textBaseline
+}
+
+function setMemeX(x) {
+    gMeme.lines[[getMemeLineIndex()]].x = x
+}
+function setMemeY(y) {
+    gMeme.lines[[getMemeLineIndex()]].y = y
+}

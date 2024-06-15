@@ -27,11 +27,14 @@ function isMemeEmptyOfLines() {
 function _createDefaultText(textAlign = 'center', textBaseline = 'middle', x = gCanvas.width / 2, y = gCanvas.height / 2) {
     return {
         txt: '',
+        fontFamily: 'Impact', 
         size: 40,
-        strokeStyle: 'white',
-        fillStyle: 'red',
+        letterSpacing: 2,
+        strokeStyle: '#000000',
+        fillStyle: '#ffffff',
         textAlign: textAlign,
         textBaseline: textBaseline,
+        rotateDeg: 0,  // in radians
         x,
         y,
         isDraged: false,
@@ -64,7 +67,7 @@ function isTextClicked({ x: posX, y: posY }) {
     const lines = getMemeLines()
     const lineHit = lines.findLast((_, _index) => {
         setMemeLineIndex(_index)
-        const { x, y, height, width } = _getTextFramePoints()
+        const { x, y, height, width } = getTextFramePoints()
         lineHitIndex = _index
         return inRange(posX, x, x + width) && inRange(posY, y, y + height)
     })
@@ -122,6 +125,18 @@ function getMemeY() {
     return gMeme.lines[[getMemeLineIndex()]].y
 }
 
+function getMemeFontFamily() {
+    return gMeme.lines[[getMemeLineIndex()]].fontFamily
+}
+
+function getMemeLetterSpacing() {
+    return gMeme.lines[[getMemeLineIndex()]].letterSpacing
+}
+
+function getMemeRotation() {
+    return gMeme.lines[[getMemeLineIndex()]].rotateDeg
+}
+
 // ------------------------- setters -------------------------
 // -----------------------------------------------------------
 function setMemeImgSrc(src) {
@@ -165,4 +180,16 @@ function setMemeY(y) {
 
 function setMemeIsLineDraged(bool) {
     gMeme.lines[[getMemeLineIndex()]].isDraged = bool
+}
+
+function setMemeFontFamily(fFam) {
+    gMeme.lines[[getMemeLineIndex()]].fontFamily = fFam
+}
+
+function setMemeLetterSpacing(space) {
+    gMeme.lines[[getMemeLineIndex()]].letterSpacing = space
+}
+
+function setMemeRotation(rad) {
+    gMeme.lines[[getMemeLineIndex()]].rotateDeg = rad
 }

@@ -12,7 +12,7 @@
     <!-- header -->
     <header>
         <nav>
-
+            <p></p>
         </nav>
     </header>
 
@@ -20,29 +20,66 @@
     <section class="editor">
         <!-- canvas -->
         <div class="canvas-container">
-			<canvas class="main-canvas" width="450" height="450"> </canvas>
+            <canvas class="main-canvas" width="450" height="450"> </canvas>
         </div>
 
         <!-- lines edit -->
         <div>
-            <input class="meme-main-input .text-caps" type="text" name="" placeholder="enter text here" oninput="onHandleMemeTextInput(this.value)" onfocusin="onInputFocus(this)">
-            <!-- <input class="meme-main-input .text-caps" type="text" name="" placeholder="enter text here" oninput="onHandleMemeTextInput(this.value)" onfocusin="onInputFocus(this)" onfocusout="onInputFocusOut(this)"> -->
+            <input class="meme-main-input .text-caps" type="text" name="" placeholder="enter text here"
+                oninput="onHandleMemeTextInput(this.value)" onfocusin="onInputFocus(this)">
             <button class="add-line-btn .text-caps" onclick="onAddLine()">add line</button>
             <button class="switch-line-btn .text-caps" onclick="onSwitchLines()">switch line</button>
             <button class="delete-line-btn .text-caps" onclick="onDeleteLine()">delete line</button>
+            <div class="horizontal-placement">
+                <button class="place-left-btn .text-caps" onclick="onTextAlignmentChange(this.value)" value="left">left</button>
+                <button class="place-center-btn .text-caps" onclick="onTextAlignmentChange(this.value)"  value="center">center</button>
+                <button class="place-right-btn .text-caps" onclick="onTextAlignmentChange(this.value)"  value="right">right</button>
+            </div>
+            <div class="vertical-placement">
+                <button class="place-top-btn .text-caps" onclick="onTextBaselineChange(this.value)" value="top">⍑</button>
+                <button class="place-middle-btn .text-caps" onclick="onTextBaselineChange(this.value)"  value="middle">middle</button>
+                <button class="place-bottom-btn .text-caps" onclick="onTextBaselineChange(this.value)"  value="bottom">⍊</button>
+            </div>
 
+            <div>
+                <input class="rotate-input" type="range" id="rtt" name="rotate" min="0" max="359" value="0"
+                    oninput="onRotate(this.value)" />
+                <label for="rtt">⭮</label>
+            </div>
         </div>
 
         <!-- font edit  -->
-        <div class="text-editor">
+        <div class="font-editor">
             <!-- <textarea id="multiliner" name="multiliner">line1
                 line2
                 line3</textarea> -->
-            <button class="icrease-font-size" onclick="onChangefontSize(+1)">A+</button>
-            <button class="decrease-font-size" onclick="onChangefontSize(-1)">A-</button>
+            <button class="icrease-font-size" onclick="onChangefontSize(+1)">&#128474</button>
+            <button class="decrease-font-size" onclick="onChangefontSize(-1)">&#128475</button>
+            <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(-1)">🢥🢦</button>
+            <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(+1)">🢦🢥</button>
+            <input class="stroke-Style-color-input" type="color" value="#000000"
+                oninput="onChnageColors(this.value, 'stroke')">
+            <input class="fill-Style-color-input" type="color" value="#ffffff"
+                oninput="onChnageColors(this.value, 'fill')">
+
+
+            <input class="font-family-input" type="text" list="font-family" value="Impact" onblur="onFontFamilyBlur()"
+                onfocus="onFontFamilyFocus()" onchange="onFontFamilyChange(this.value)" />
+            <datalist id="font-family">
+                <option>Impact</option>
+                <option>Arial</option>
+                <option>Verdana</option>
+                <option>Tahoma</option>
+                <option>Trebuchet MS</option>
+                <option>Times New Roman</option>
+                <option>Georgia</option>
+                <option>Courier New </option>
+                <option>Brush Script MT</option>
+            </datalist>
         </div>
         <div class="content-services">
             <a href="" download="" class="download-link" onclick=" onDownload(this)">download</a>
+
         </div>
     </section>
 
@@ -53,7 +90,7 @@
     <section></section>
 
     <!-- scripts -->
-	<div class="scripts">
+    <div class="scripts">
         <script src="scripts/service/utilsService.js"></script>
         <script src="scripts/service/imgsSrc.js"></script>
         <script src="scripts/service/galleyService.js"></script>

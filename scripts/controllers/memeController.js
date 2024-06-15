@@ -6,12 +6,22 @@ let gCtx
 let gEditmode = false
 let gLineInfocus = null
 let gElMemeInput
+let gElFontFamInput
+let gElStrokeStyleInput
+let gElStrokeFillInput
+let gElRoteteInput
+
 let gStartPos
 
 const elImg = new Image()
 
 function setCanvas() {
     gElMemeInput = document.querySelector('.meme-main-input')
+    gElFontFamInput = document.querySelector('.font-family-input')
+    gElStrokeStyleInput = document.querySelector('.stroke-Style-color-input')
+    gElStrokeFillInput = document.querySelector('.fill-Style-color-input')
+    gElRoteteInput = document.querySelector('.rotate-input')
+
     gCanvas = document.querySelector('canvas')
     gCtx = gCanvas.getContext('2d')
     addListeners()
@@ -32,7 +42,7 @@ function renderMeme() {
     }
 }
 
-function _getTextFramePoints() {
+function getTextFramePoints() {
     let x = getMemeX()
     let y = getMemeY()
     const text = getMemeText();
@@ -41,10 +51,10 @@ function _getTextFramePoints() {
 
     switch (getMemeTextBaseline()) {
         case 'top':
-            break;
+            break
         case 'bottom':
             y -= height
-            break;
+            break
         default: // middle
             y -= height / 2
     }
@@ -81,22 +91,58 @@ function getEvPos(ev) {
     return pos
 }
 
+function getCenterOfRotation() {
+    let x = getMemeX()
+    let y = getMemeY()
+    const text = getMemeText();
+    const height = getMemeFontSize();
+    const width = gCtx.measureText(text).width;
+
+    switch (getMemeTextBaseline()) {
+        case 'top':
+            y += height / 2
+            break
+        case 'bottom':
+            y -= height / 2
+            break
+    }
+
+    switch (getMemeTextAlign()) {
+        case 'left':
+            x += width / 2
+            break
+        case 'right':
+            x -= width / 2
+            break
+    }
+
+    return { x, y }
+}
+
 // ------------------------- drawing ------------------------- //
 // ----------------------------------------------------------- //
 
 function _drawText() {
-    if (gLineInfocus === getMemeLineIndex()) _drawOutFrameAround();
     _setDrawingContext();
+    if (gLineInfocus === getMemeLineIndex()) _drawOutFrameAround();
     _drawTextContent();
+    // reset rotaion
+    gCtx.resetTransform();
 }
 
 function _setDrawingContext() {
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = getMemeStrokeStyle();
-    gCtx.fillStyle = setMemeFillStyle();
-    gCtx.font = `${getMemeFontSize()}px Arial`;
+    gCtx.fillStyle = getMemeFillStyle();
+    gCtx.font = `${getMemeFontSize()}px ${getMemeFontFamily()}`;
     gCtx.textBaseline = getMemeTextBaseline();
     gCtx.textAlign = getMemeTextAlign();
+    gCtx.letterSpacing = getMemeLetterSpacing() + 'px'
+
+    // rotation
+    const { x, y } = getCenterOfRotation()
+    const rad = getMemeRotation()
+    rotateCanvas({ x, y }, rad)
 }
 
 function _drawTextContent() {
@@ -108,7 +154,7 @@ function _drawTextContent() {
 }
 
 function _drawOutFrameAround() {
-    const { x, y, height, width } = _getTextFramePoints()
+    const { x, y, height, width } = getTextFramePoints()
     gCtx.beginPath()
     gCtx.lineWidth = 1
     gCtx.strokeStyle = 'blue'
@@ -129,8 +175,22 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
 }
 
-// ------------------------- on actions ------------------------- //
-// -------------------------------------------------------------- //
+
+function rotateCanvas({ x, y }, rad) {
+    gCtx.translate(x, y);
+    gCtx.rotate(rad);
+    // reset translation
+    gCtx.translate(-x, -y);
+}
+
+// -+-+-+-+-+-+-+-+-+-+-+-+ on actions -+-+-+-+-+-+-+-+-+-+-+-+ //
+// -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ //
+// -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ //
+
+
+// - - - - - - meme editor - - - - - - //
+// - - - - - - - - - - - - - - - - - - //
+// - - - - - - - - - - - - - - - - - - //
 
 function onHandleMemeTextInput(txt) {
     setMemeLineTxt(txt)
@@ -152,12 +212,13 @@ function onSwitchLines() {
     gElMemeInput.focus()
 }
 
-function onInputFocus() {
-    gLineInfocus = getMemeLineIndex()
+function setInputsRealVals() {
+    gElFontFamInput.value = getMemeFontFamily()
+    gElStrokeStyleInput.value = getMemeStrokeStyle()
+    gElStrokeFillInput.value = getMemeFillStyle()
     gElMemeInput.value = getMemeText()
-    renderMeme()
+    gElRoteteInput.value = radsToDegrees(getMemeRotation())
 }
-
 
 function onDeleteLine() {
     getMemeLines().splice(getMemeLineIndex(), 1)
@@ -167,17 +228,116 @@ function onDeleteLine() {
     gElMemeInput.focus()
 }
 
+function onChnageColors(style, component) {
+    switch (component) {
+        case 'stroke':
+            setMemeStrokeStyle(style)
+            break
+        case 'fill':
+            setMemeFillStyle(style)
+    }
+    renderMeme()
+}
 
-function onOutOfFocus(ev) {
-    const target = ev.target
-    if (target === gCanvas || target === gElMemeInput) return
-    gLineInfocus = null
-    gElMemeInput.value = ''
+function onFontFamilyChange(fFam) {
+    setMemeFontFamily(fFam)
+    renderMeme()
+}
+
+function onChangeLeterSpacing(sz) {
+    const space = Math.max(getMemeLetterSpacing() + sz, 0)
+    setMemeLetterSpacing(space)
+    renderMeme()
+}
+
+function onRotate(deg) {
+    const rad = degreesToRads(+deg)
+    setMemeRotation(rad)
+    renderMeme()
+}
+
+function onTextAlignmentChange(pos) {
+    setMemeTextAlign(pos)
+    switch (pos) {
+        case 'left':
+            setMemeX(0)
+            break
+        case 'center':
+            setMemeX(gCanvas.width / 2)
+            break
+        case 'right':
+            setMemeX(gCanvas.width)
+            break
+    }
+    renderMeme()
+}
+
+function onTextBaselineChange(pos) {
+    setMemeTextBaseline(pos)
+    switch (pos) {
+        case 'top':
+            setMemeY(0)
+            break
+        case 'middle':
+            setMemeY(gCanvas.height / 2)
+            break
+        case 'bottom':
+            setMemeY(gCanvas.height)
+            break
+    }
+    renderMeme()
+}
+
+// - - - - - - focus events - - - - - - //
+// - - - - - - - - - - - - - - - - - - //
+// - - - - - - - - - - - - - - - - - - //
+
+
+function onInputFocus() {
+    gLineInfocus = getMemeLineIndex()
+    setInputsRealVals()
     renderMeme()
 }
 
 
-// drag drop section
+function onFontFamilyFocus() {
+    gElFontFamInput.value = ''
+}
+
+function onFontFamilyBlur() {
+    gElFontFamInput.value = getMemeFontFamily()
+}
+
+
+
+
+// - - drag drop section keyboard events - - //
+// - - - - - - - - - - - - - - - - - - - - - //
+// - - - - - - - - - - - - - - - - - - - - - //
+
+function onkeydown(ev) {
+    if (gLineInfocus === null) return // can also be 0
+
+    switch (ev.keyCode) {
+        case 38: // up arrow
+            setMemeY(getMemeY() - 1)
+            break
+        case 40: // down arrow
+            setMemeY(getMemeY() + 1)
+            break
+        case 37: // left arrow
+            setMemeX(getMemeX() - 1)
+            break
+        case 39: // right arrow
+            setMemeX(getMemeX() + 1)
+            break
+    }
+    renderMeme()
+}
+
+// - - drag drop section mouse events - - //
+// - - - - - - - - - - - - - - - - - - - - //
+// - - - - - - - - - - - - - - - - - - - - //
 
 function onDown(ev) {
     const pos = getEvPos(ev)
@@ -192,8 +352,8 @@ function onDown(ev) {
     gLineInfocus = getMemeLineIndex()
     // events
     ev.preventDefault()
+    setInputsRealVals()
     gElMemeInput.focus()
-    gElMemeInput.value = getMemeText()
     // re-render
     renderMeme()
     document.body.style.cursor = 'move'
@@ -220,27 +380,45 @@ function onUp() {
     document.body.style.cursor = 'default'
 }
 
+function onOutOfFocus(ev) { // apllies to window
+    const target = ev.target
+    if (target === gCanvas || target === gElMemeInput) return
+    gLineInfocus = null
+    gElMemeInput.value = ''
+    renderMeme()
+}
+
+
 // ------------------------- events additions ------------------------- //
 // -------------------------------------------------------------------- //
 
 function addListeners() {
+    addKeyboaedListeners()
     addMouseListeners()
     addTouchListeners()
 }
 
 function addMouseListeners() {
+    // window
     window.addEventListener('mousedown', onOutOfFocus)
+    //canvas
     gCanvas.addEventListener('mousedown', onDown)
     gCanvas.addEventListener('mousemove', onMove)
     gCanvas.addEventListener('mouseup', onUp)
 }
 
 function addTouchListeners() {
+    // window
+    window.addEventListener('touchstart', onOutOfFocus)
     gCanvas.addEventListener('touchstart', onDown)
     gCanvas.addEventListener('touchmove', onMove)
     gCanvas.addEventListener('touchend', onUp)
 }
 
+function addKeyboaedListeners() {
+    // window
+    window.addEventListener('keydown', onkeydown)
+}
 // ------------------------------------------------------------------------------
 
 

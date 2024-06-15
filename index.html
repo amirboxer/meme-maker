@@ -27,24 +27,24 @@
         <div>
             <input class="meme-main-input .text-caps" type="text" name="" placeholder="enter text here"
                 oninput="onHandleMemeTextInput(this.value)" onfocusin="onInputFocus(this)">
-            <button class="add-line-btn .text-caps" onclick="onAddLine()">add line</button>
-            <button class="switch-line-btn .text-caps" onclick="onSwitchLines()">switch line</button>
-            <button class="delete-line-btn .text-caps" onclick="onDeleteLine()">delete line</button>
+            <button class="add-line-btn .text-caps" onclick="onAddLine()"><img class="icon" src="/style/images/icons/plus.png"></button>
+            <button class="switch-line-btn .text-caps" onclick="onSwitchLines()"><img class="icon" src="/style/images/icons/arrows-down-up.png"></button>
+            <button class="delete-line-btn .text-caps" onclick="onDeleteLine()"><img  class="icon" src="/style/images/icons/trash.png"></button>
             <div class="horizontal-placement">
-                <button class="place-left-btn .text-caps" onclick="onTextAlignmentChange(this.value)" value="left">left</button>
-                <button class="place-center-btn .text-caps" onclick="onTextAlignmentChange(this.value)"  value="center">center</button>
-                <button class="place-right-btn .text-caps" onclick="onTextAlignmentChange(this.value)"  value="right">right</button>
+                <button class="place-left-btn .text-caps" onclick="onTextAlignmentChange(this.value)" value="left"><img class="icon" src="/style/images/icons/text-align-left.png"></button>
+                <button class="place-center-btn .text-caps" onclick="onTextAlignmentChange(this.value)"  value="center"><img class="icon" src="/style/images/icons/text-align-center.png"></button>
+                <button class="place-right-btn .text-caps" onclick="onTextAlignmentChange(this.value)"  value="right"><img class="icon" src="/style/images/icons/text-align-right.png"></button>
             </div>
             <div class="vertical-placement">
-                <button class="place-top-btn .text-caps" onclick="onTextBaselineChange(this.value)" value="top">⍑</button>
-                <button class="place-middle-btn .text-caps" onclick="onTextBaselineChange(this.value)"  value="middle">middle</button>
-                <button class="place-bottom-btn .text-caps" onclick="onTextBaselineChange(this.value)"  value="bottom">⍊</button>
+                <button class="place-top-btn .text-caps" onclick="onTextBaselineChange(this.value)" value="top"><img class="icon" src="/style/images/icons/vertical-align-top.png"></button>
+                <button class="place-middle-btn .text-caps" onclick="onTextBaselineChange(this.value)"  value="middle"><img class="icon" src="/style/images/icons/vertical-align-middle.png"></button>
+                <button class="place-bottom-btn .text-caps" onclick="onTextBaselineChange(this.value)"  value="bottom"><img class="icon" src="/style/images/icons/vertical-align-bottom.png"></button>
             </div>
 
             <div>
                 <input class="rotate-input" type="range" id="rtt" name="rotate" min="0" max="359" value="0"
                     oninput="onRotate(this.value)" />
-                <label for="rtt">⭮</label>
+                <label for="rtt"><img class="icon" src="/style/images/icons/rotate.png"></label>
             </div>
         </div>
 
@@ -53,10 +53,10 @@
             <!-- <textarea id="multiliner" name="multiliner">line1
                 line2
                 line3</textarea> -->
-            <button class="icrease-font-size" onclick="onChangefontSize(+1)">&#128474</button>
-            <button class="decrease-font-size" onclick="onChangefontSize(-1)">&#128475</button>
-            <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(-1)">🢥🢦</button>
-            <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(+1)">🢦🢥</button>
+            <button class="icrease-font-size" onclick="onChangefontSize(+1)"><img class="icon" src="/style/images/icons/font-bigger.png"></button>
+            <button class="decrease-font-size" onclick="onChangefontSize(-1)"><img class="icon" src="/style/images/icons/font-smaller.png"></button>
+            <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(-1)"><img class="icon" src="/style/images/icons/shrink.png"></button>
+            <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(+1)"><img class="icon" src="/style/images/icons/enlarge.png"></button>
             <input class="stroke-Style-color-input" type="color" value="#000000"
                 oninput="onChnageColors(this.value, 'stroke')">
             <input class="fill-Style-color-input" type="color" value="#ffffff"

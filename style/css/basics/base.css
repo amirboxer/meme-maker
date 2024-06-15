@@ -1,3 +1,9 @@
 ::placeholder { /* Recent browsers */
     text-transform: capitalize;
 }
+
+.icon {
+    height: 1rem;
+    width: 1rem;
+}
+

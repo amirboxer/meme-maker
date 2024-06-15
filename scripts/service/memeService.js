@@ -1,13 +1,5 @@
 'use strict'
 
-
-const gTextProperties = {
-    font: "bold 48px serif",
-    wordSpacing: '0px',
-    textBaseline: 'middle',
-    textAlign: 'center'
-}
-
 function createMemeObj(imgNum,) {
     return {
         selectedImgId: imgNum,
@@ -26,10 +18,10 @@ var gMeme = {
     imgSrc: '../../style/images/bliss.png',
     selectedLineIdx: null,
     lines: []
+
 }
 function isMemeEmptyOfLines() {
     return (!getMemeLines().length)
-
 }
 
 function _createDefaultText(textAlign = 'center', textBaseline = 'middle', x = gCanvas.width / 2, y = gCanvas.height / 2) {
@@ -42,6 +34,7 @@ function _createDefaultText(textAlign = 'center', textBaseline = 'middle', x = g
         textBaseline: textBaseline,
         x,
         y,
+        isDraged: false,
     }
 }
 
@@ -65,7 +58,26 @@ function switchLines() {
     setMemeLineIndex(currIndex)
 }
 
-// getters
+function isTextClicked({ x: posX, y: posY }) {
+    const originalIndex = getMemeLineIndex()
+    let lineHitIndex = 0
+    const lines = getMemeLines()
+    const lineHit = lines.findLast((_, _index) => {
+        setMemeLineIndex(_index)
+        const { x, y, height, width } = _getTextFramePoints()
+        lineHitIndex = _index
+        return inRange(posX, x, x + width) && inRange(posY, y, y + height)
+    })
+    setMemeLineIndex(originalIndex)
+    return {lineHit, lineHitIndex}
+}
+
+function isLineDraged(lineIndex) {
+    return gMeme.lines[lineIndex].isDraged
+}
+
+// ------------------------- getters -------------------------
+// -----------------------------------------------------------
 function getMemeImgSrc() {
     return gMeme.imgSrc
 }
@@ -110,7 +122,8 @@ function getMemeY() {
     return gMeme.lines[[getMemeLineIndex()]].y
 }
 
-// setters
+// ------------------------- setters -------------------------
+// -----------------------------------------------------------
 function setMemeImgSrc(src) {
     gMeme.imgSrc = src
 }
@@ -148,4 +161,8 @@ function setMemeX(x) {
 }
 function setMemeY(y) {
     gMeme.lines[[getMemeLineIndex()]].y = y
+}
+
+function setMemeIsLineDraged(bool) {
+    gMeme.lines[[getMemeLineIndex()]].isDraged = bool
 }

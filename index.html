@@ -90,8 +90,8 @@
             </div>
 
             <!-- line rotationg option -->
-            <div class="line-rotation">
-                <img class="icon" src="/style/images/icons/rotate.png">
+            <div class="line-rotation line-rotation-layout">
+                <img class="icon rotation-sign" src="/style/images/icons/rotate.png">
                 <input class="rotate-input" type="range" id="rtt" name="rotate" min="0" max="359" value="0"
                     oninput="onRotate(this.value); document.getElementById('degree-label').innerText = this.value" />
                 <label id="degree-label" for="rtt">0</label>
@@ -100,7 +100,7 @@
             <!-- font and colors editing  -->
             <div class="font-editor font-editor-layout">
                 <!-- font family -->
-                <input class="font-family-input" type="text" list="font-family" value="Impact"
+                <input id="font-family-input" class="font-family-input" type="text" list="font-family" value="Impact"
                     onblur="onFontFamilyBlur()" onfocus="onFontFamilyFocus()"
                     onchange="onFontFamilyChange(this.value)" />
                 <datalist id="font-family">
@@ -114,17 +114,28 @@
                     <option>Courier New </option>
                     <option>Brush Script MT</option>
                 </datalist>
+
                 <!-- stroke style AKA line color -->
-                <input class="stroke-Style-color-input" type="color" value="#000000"
-                    oninput="onChnageColors(this.value, 'stroke')">
+                <button id="stroke-Style-color-input">
+                    <img class="icon" src="/style/images/icons/paint-brush.png">
+                    <input class="stroke-Style-color-input" type="color" value="#000000"
+                        oninput="onChnageColors(this.value, 'stroke')">
+                </button>
+
+
                 <!-- fill color -->
-                <input class="fill-Style-color-input" type="color" value="#ffffff"
-                    oninput="onChnageColors(this.value, 'fill')">
+                <button id="fill-Style-color-input">
+                    <img class="icon" src="/style/images/icons/color-fill.png">
+                    <input class="fill-Style-color-input" type="color" value="#ffffff"
+                        oninput="onChnageColors(this.value, 'fill')">
+                </button>
             </div>
 
             <div class="content-services content-services-layout">
-                <a href="" download="" class="download-link" onclick=" onDownload(this)">download</a>
-                <a href="" download="" class="download-link" onclick=" onDownload(this)">share</a>
+                <button class="download-link" onclick=" onDownload(this)"><img class="icon stroke-Style-color" src="/style/images/icons/download.png"></button>
+                <button class="share-link" onclick=" onDownload(this)"><img class="icon stroke-Style-color" src="/style/images/icons/share.png"></button>
+                <button class="save-link" onclick=" onDownload(this)"><img class="icon stroke-Style-color" src="/style/images/icons/save.png"></button>
+
             </div>
         </div>
 

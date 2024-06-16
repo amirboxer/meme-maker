@@ -1,0 +1,16 @@
+.content-services-layout>* {
+    width: 100%;
+}
+
+.download-link {
+    background-color: rgb(53, 95, 221);
+}
+
+.share-link {
+    background-color: rgb(31, 115, 82);
+}
+
+.save-link {
+    background-color: rgb(131, 4, 95);
+
+}

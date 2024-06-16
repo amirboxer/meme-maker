@@ -8,25 +8,21 @@ body>* {
     grid-column: 2;
 }
 
-
 /* new section------------------------------------------------------- */
 .meme-creation-section-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem
+    gap: 2rem;
+    place-items: center;
 }
-
-.canvas-container-layout {
-    justify-self: end;
-}
-
 
 /* meme editor */
 .main-editor-layout {
     display: grid;
-    align-items: space-between;
-    justify-self: start;
-    gap: 1rem;
+    gap: 1.3rem;
+    background-color: rgb(79, 79, 79);
+    padding: 1rem;
+    border-radius: 1rem;
 }
 
 .line-editor-layout {
@@ -38,16 +34,28 @@ body>* {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
+    background-color: rgb(13, 147, 147);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.line-rotation-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 3fr 1.5fr;
+    place-items: center;
 }
 
 .font-editor-layout {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
+    align-items: center;
+    gap: 1rem;
 }
 
 .content-services-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem
 }
 
 /* new section------------------------------------------------------------ */

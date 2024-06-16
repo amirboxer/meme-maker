@@ -1,0 +1,73 @@
+.rotation-sign {
+    height: 3rem;
+    width: 3rem;
+    filter: drop-shadow(10px 0px 15px);
+    cursor: default;
+}
+
+.rotate-input {
+    filter: drop-shadow(1rem 1.1rem 0.32rem);
+    justify-self: stretch;
+
+
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    /* cursor: pointer; */
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium  TRACKER*****/ 
+input[type="range"]::-webkit-slider-runnable-track {
+    background: rgb(13, 147, 147);
+    height: 4px;
+    border-radius: 10px;
+}
+
+/******** Firefox TRACKER********/
+input[type="range"]::-moz-range-track {
+    background: rgb(13, 147, 147);
+    height: 4px;
+    border-radius: 10px;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium THUMB*****/ 
+input[type="range"]::-webkit-slider-thumb {
+    cursor: pointer;
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -13px; /* Centers thumb on the track */
+    background-color: #5ceb80;
+    height: 2rem;
+    width: 1rem;   
+    border-radius: 10px; 
+    transition: all 0.2s;
+ }
+
+ input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+ }
+
+ /******** Firefox THUMB********/
+
+ input[type="range"]::-moz-range-thumb {
+    cursor: pointer;
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -13px; /* Centers thumb on the track */
+    background-color: #5ceb80;
+    height: 2rem;
+    width: 1rem;   
+    border-radius: 10px; 
+}
+
+
+input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.2);
+ }
+
+#degree-label {
+    filter: drop-shadow(10px 10px 2px black);
+    font-family: Impact;
+    color: white;
+    font-size: 2.5em;
+}

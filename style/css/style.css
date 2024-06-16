@@ -8,8 +8,8 @@
 
 /* components */
 @import url(./compenents/line-editor.css);
-@import url(./compenents/line-sizing-positioning.css);
 @import url(./compenents/font-editor.css);
 @import url(./compenents/content-services.css);
+@import url(./compenents/line-rotation.css);
 /* mq */
 @import url(./mq/mq.css);

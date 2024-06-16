@@ -1,11 +1,11 @@
 .add-line-btn{
-    background-color: black;
+    background-color: rgb(68, 255, 108);
 }
 
 .switch-line-btn{
-
+    background-color: rgb(68, 230, 255);
 }
 
 .delete-line-btn{
-
+    background-color: rgb(247, 38, 38);
 }

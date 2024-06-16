@@ -1,0 +1,15 @@
+.navbar {
+    padding-inline-end: 2rem;
+}
+
+#gallery-btn, #about-btn{
+    font-family: 'Arial';
+    color: white;
+    font-size: 3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    height: auto;
+    width: auto;
+    background: none;
+    box-shadow: none;
+}

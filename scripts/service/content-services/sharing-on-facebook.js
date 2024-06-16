@@ -2,7 +2,7 @@
 
 function onUploadImg() {
     // Gets the image from the canvas
-    const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+    const imgDataUrl = gCanvas.toDataURL('image/jpeg')
 
     function onSuccess(uploadedImgUrl) {
         // Handle some special characters

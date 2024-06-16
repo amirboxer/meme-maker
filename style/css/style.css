@@ -11,5 +11,8 @@
 @import url(./compenents/font-editor.css);
 @import url(./compenents/content-services.css);
 @import url(./compenents/line-rotation.css);
+@import url(./compenents/logo.css);
+@import url(./compenents/navbar.css);
+@import url(./compenents/meme-creation-cover.css);
 /* mq */
 @import url(./mq/mq.css);

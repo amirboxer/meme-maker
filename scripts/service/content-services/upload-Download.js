@@ -1,14 +1,31 @@
 'use strict'
 
-function onDownload(elLink) {
+function onDownload() {
     const imgContent = gCanvas.toDataURL('image/jpeg') // image/jpeg the default format
-    elLink.down
-    elLink.download="meme.jpg"
-    elLink.href = imgContent
+    _download(imgContent)
 }
 
+function _download(url) {
+    const elA = document.createElement('a')
+    elA.href = url
+    elA.download = url.split('/').pop()
+    document.body.appendChild(elA)
+    elA.click()
+    document.body.removeChild(elA)
+  }
+
+  function onUpLoadImage() {
+    const elInput = document.createElement('input')
+    elInput.type = 'file'
+    elInput.accept="image/*"
+    document.body.appendChild(elInput)
+    elInput.onchange = event => onImgInput(event)
+    elInput.click()
+    document.body.removeChild(elInput)
+  }
+
 function onImgInput(ev) {
-    loadImageFromInput(ev, renderImg)
+    loadImageFromInput(ev, onImgSelect)
 }
 
 // Read the file from the input
@@ -16,14 +33,9 @@ function onImgInput(ev) {
 function loadImageFromInput(ev, onImageReady) {
     const reader = new FileReader()
     reader.onload = function (event) {
-        let elImg = new Image()
-        elImg.src = event.target.result
-        elImg.onload = () => onImageReady(elImg)
+        // let elImg = new Image()
+        let src = event.target.result
+        onImageReady(src)
     }
     reader.readAsDataURL(ev.target.files[0])
-}
-
-function renderImg(elImg) {
-    // Draw the img on the canvas
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }

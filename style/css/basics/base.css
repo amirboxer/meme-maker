@@ -1,12 +1,28 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
 }
 
 ::placeholder { /* Recent browsers */
     text-transform: capitalize;
     font-family: Tahoma, san-serif;
     font-size: 1.5rem;    
+}
+
+body{
+    background-color: #22252b;   
+}
+
+header {
+    background-image: linear-gradient(to right, #0f9bb4 , #2fbb72);
+    border-radius:  100rem;    
+    position: fixed;
+    width: 100%;
+    z-index: 2;
 }
 
 button {
@@ -25,6 +41,7 @@ button {
 
     box-shadow: inset rgb(255, 255, 255) 0px 0.1rem 0.4rem 0.1rem;
     border-color: rgba(255, 255, 255, 0);
+    background-color:  #ebeef3;
     filter: drop-shadow(0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.532));
 }
 
@@ -55,4 +72,14 @@ img {
     height: 2rem;
     width: 2rem;
     filter: drop-shadow(0.1rem 0.1rem 1px rgba(0, 0, 0, 0.532));
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style: none;
 }

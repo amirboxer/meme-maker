@@ -1,0 +1,31 @@
+.meme-creation-cover {
+    background-color: rgba(41, 41, 41, 0.869);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: none;
+}
+
+
+.meme-creation-section {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5rem;
+    background-color: #15161cc4;
+    border-radius: 2rem;
+}
+
+.exit-btn {
+    grid-column: 1 / -1;
+    font-family: 'Arial';
+    color: white;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    height: auto;
+    width: auto;
+    background: none;
+    box-shadow: none;
+}

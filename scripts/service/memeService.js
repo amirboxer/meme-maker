@@ -79,6 +79,11 @@ function isLineDraged(lineIndex) {
     return gMeme.lines[lineIndex].isDraged
 }
 
+function clearMeme(){
+    gMeme.lines = []
+    selectedLineIdx = null
+}
+
 // ------------------------- getters -------------------------
 // -----------------------------------------------------------
 function getMemeImgSrc() {

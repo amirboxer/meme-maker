@@ -8,19 +8,35 @@ body>* {
     grid-column: 2;
 }
 
+/* header ------------------------------------------------------- */
+.header-layout {
+    grid-column: 1 /-1;
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    grid-auto-flow: column;
+}
+
+.navbar-ul-layout {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 3rem
+}
+
 /* new section------------------------------------------------------- */
 .meme-creation-section-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     place-items: center;
+    margin-block: 4rem;
 }
 
 /* meme editor */
 .main-editor-layout {
     display: grid;
     gap: 1.3rem;
-    background-color: rgb(79, 79, 79);
+    background-color: #383b44;
     padding: 1rem;
     border-radius: 1rem;
 }
@@ -34,7 +50,7 @@ body>* {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
-    background-color: rgb(13, 147, 147);
+    background-color: #15a69e;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }

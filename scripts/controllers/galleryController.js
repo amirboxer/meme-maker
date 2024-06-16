@@ -3,7 +3,7 @@
 function renderGallery() {
     // let id = 1
     const elGallery = document.querySelector('.gallery')
-    const uploadImg = `<img class="" src="../../style/images/icons/upload.png" onclick="onUpLoadImage()" title="Click To Upload Picture">`
+    const uploadImg = `<img class="" src="style/images/icons/upload.png" onclick="onUpLoadImage()" title="Click To Upload Picture">`
     elGallery.innerHTML = uploadImg + gImgsSrcs.map(imgSrc => `<img class="img-galerry" src="${imgSrc}" onclick="onImgSelect(this.src)">`).join('')
 }
 

@@ -21,6 +21,8 @@ function onSaveMeme() {
     const memeHTML = _memeToHTML(gMeme)
     gSavedMemes.unshift({ html: memeHTML, meme: gMeme })
     sroteDataInLocS(SAVED_KEY, gSavedMemes)
+    onBackToGallery()
+    onShowSavedMemes()
 }
 
 
@@ -30,4 +32,5 @@ function _memeToHTML() {
 
 function onSavedMemeEdit(src) {
     onImgSelect(src)
+    
 }

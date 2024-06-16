@@ -29,7 +29,6 @@ function onBackToGallery() {
 }
 
 function _renderSavedMemes(elGallery) {
-
     const memes = gSavedMemes.reduce((acc, sMeme) => acc + sMeme.html, '');
     elGallery.innerHTML = memes
 }

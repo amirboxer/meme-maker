@@ -1,6 +1,3 @@
-/* setup */
-@import url(setup/vars.css);
-
 /* basics */
 @import url(basics/base.css);
 @import url(basics/helpres.css);
@@ -14,5 +11,6 @@
 @import url(compenents/logo.css);
 @import url(compenents/navbar.css);
 @import url(compenents/meme-creation-cover.css);
+@import url(compenents/canvas-container.css);
 /* mq */
 @import url(mq/mq.css);

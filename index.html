@@ -15,7 +15,7 @@
         <nav class="navbar">
             <ul class="navbar-ul navbar-ul-layout">
                 <li><button id="gallery-btn" onclick="renderGallery()">gallery</button></li>
-                <li><button id="about-btn">about</button></li>
+                <!-- <li><button id="about-btn">about</button></li> -->
                 <li><button id="save-btn" onclick="onShowSavedMemes()">saved</button></li>
             </ul>
         </nav>
@@ -24,7 +24,7 @@
     <section class="meme-creation-cover" onclick="onOutOfFocusExitEdditor(event, this)">
         <div class="meme-creation-section meme-creation-section-layout">
             <!-- canvas -->
-            <div class="canvas-container canvas-container-layout">
+            <div id="canvas-container"class=" canvas-container-layout">
                 <canvas class="main-canvas" width="450" height="450"> </canvas>
             </div>
 
@@ -161,7 +161,6 @@
     <div class="scripts">
         <script src="scripts/service/utilsService.js"></script>
         <script src="scripts/service/imgsSrc.js"></script>
-        <script src="scripts/service/galleyService.js"></script>
         <script src="scripts/service/memeService.js"></script>
         <script src="scripts/service/storageService.js"></script>
         <script src="scripts/controllers/galleryController.js"></script>

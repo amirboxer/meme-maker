@@ -23,16 +23,43 @@ function setCanvas() {
     gElRoteteInput = document.querySelector('.rotate-input')
     gCanvas = document.querySelector('canvas')
     gCtx = gCanvas.getContext('2d')
+
+    window.addEventListener('resize', resizeCanvas)
+
     addListeners()
     createMemeObj()
+
+
+    const elMemeCreationPg = document.querySelector('.meme-creation-cover')
+    elMemeCreationPg.style.display = "initial"
+    resizeCanvas()
+    elMemeCreationPg.style.display = "none"
+
 }
+
+
+function resizeCanvas() {
+    const elMemeCreationPg = document.querySelector('.meme-creation-cover')
+    const initialDisplay = elMemeCreationPg.style.display
+    elMemeCreationPg.style.display = "initial"
+    
+    const elContainer = document.querySelector('#canvas-container')
+    //* Changing the canvas dimension clears the canvas
+    gCanvas.width = elContainer.clientWidth
+    gCanvas.height = elContainer.clientWidth
+    elMemeCreationPg.style.display = initialDisplay
+    renderMeme()
+}
+
 
 function renderMeme() {
     if (!getMemeImgSrc()) return
     const originalIndex = getMemeLineIndex()
     elImg.src = getMemeImgSrc()
     elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
+        gCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gCanvas.width
+        gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height)
+        //gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
         getMemeLines().forEach((_, index) => {
             setMemeLineIndex(index)
             _drawText()

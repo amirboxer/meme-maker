@@ -27,7 +27,7 @@ body>* {
 /* new section------------------------------------------------------- */
 .meme-creation-section-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(450px, 1fr) 1fr;
     gap: 2rem;
     place-items: center;
     margin-block: 4rem;
@@ -80,7 +80,7 @@ body>* {
 .gallery-layout {
     --gallery-grid-gap: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     align-items: center;
     gap: var(--gallery-grid-gap);
 }

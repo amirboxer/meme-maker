@@ -1,7 +1,8 @@
 body {
     --gap-from-viewport-end: 100px;
     display: grid;
-    grid-template-columns: var(--gap-from-viewport-end) calc(100% - calc(var(--gap-from-viewport-end) * 2)) var(--gap-from-viewport-end);
+    grid-template-columns: minmax(1rem, var(--gap-from-viewport-end)) calc(100% - calc(var(--gap-from-viewport-end) * 2)) minmax(1rem, var(--gap-from-viewport-end));
+    gap: 2rem;
 }
 
 body>* {
@@ -79,7 +80,7 @@ body>* {
 .gallery-layout {
     --gallery-grid-gap: 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--min-gallery-col-width), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     align-items: center;
     gap: var(--gallery-grid-gap);
 }

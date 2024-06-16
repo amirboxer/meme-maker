@@ -25,5 +25,9 @@ function onSaveMeme() {
 
 
 function _memeToHTML() {
-    return `<img src="${gCanvas.toDataURL()}">`
+    return `<img src="${gCanvas.toDataURL()}" onclick="onSavedMemeEdit(this.src)" class="img-galerry">`
+}
+
+function onSavedMemeEdit(src) {
+    onImgSelect(src)
 }

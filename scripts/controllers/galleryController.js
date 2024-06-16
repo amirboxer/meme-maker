@@ -3,7 +3,7 @@
 function renderGallery() {
     // let id = 1
     const elGallety = document.querySelector('.gallery')
-    elGallety.innerHTML = gImgsSrcs.map(imgSrc => `<img src="${imgSrc}" onclick="onImgSelect(this.src)">`).join('')
+    elGallety.innerHTML = gImgsSrcs.map(imgSrc => `<img class="" src="${imgSrc}" onclick="onImgSelect(this.src)">`).join('')
 }
 
 

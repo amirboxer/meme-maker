@@ -1,0 +1,61 @@
+body {
+    --gap-from-viewport-end: 100px;
+    display: grid;
+    grid-template-columns: var(--gap-from-viewport-end) calc(100% - calc(var(--gap-from-viewport-end) * 2)) var(--gap-from-viewport-end);
+}
+
+body>* {
+    grid-column: 2;
+}
+
+
+/* new section------------------------------------------------------- */
+.meme-creation-section-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem
+}
+
+.canvas-container-layout {
+    justify-self: end;
+}
+
+
+/* meme editor */
+.main-editor-layout {
+    display: grid;
+    align-items: space-between;
+    justify-self: start;
+    gap: 1rem;
+}
+
+.line-editor-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+}
+
+.line-sizing-positioning-layout {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+}
+
+.font-editor-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+}
+
+.content-services-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* new section------------------------------------------------------------ */
+/* gallery */
+.gallery-layout {
+    --gallery-grid-gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-gallery-col-width), 1fr));
+    align-items: center;
+    gap: var(--gallery-grid-gap);
+}

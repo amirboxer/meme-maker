@@ -17,77 +17,123 @@
     </header>
 
     <!-- editor -->
-    <section class="editor">
+    <section class="meme-creation-section meme-creation-section-layout">
         <!-- canvas -->
-        <div class="canvas-container">
+        <div class="canvas-container canvas-container-layout">
             <canvas class="main-canvas" width="450" height="450"> </canvas>
         </div>
 
-        <!-- lines edit -->
-        <div>
-            <input class="meme-main-input .text-caps" type="text" name="" placeholder="enter text here"
-                oninput="onHandleMemeTextInput(this.value)" onfocusin="onInputFocus(this)">
-            <button class="add-line-btn .text-caps" onclick="onAddLine()"><img class="icon" src="/style/images/icons/plus.png"></button>
-            <button class="switch-line-btn .text-caps" onclick="onSwitchLines()"><img class="icon" src="/style/images/icons/arrows-down-up.png"></button>
-            <button class="delete-line-btn .text-caps" onclick="onDeleteLine()"><img  class="icon" src="/style/images/icons/trash.png"></button>
-            <div class="horizontal-placement">
-                <button class="place-left-btn .text-caps" onclick="onTextAlignmentChange(this.value)" value="left"><img class="icon" src="/style/images/icons/text-align-left.png"></button>
-                <button class="place-center-btn .text-caps" onclick="onTextAlignmentChange(this.value)"  value="center"><img class="icon" src="/style/images/icons/text-align-center.png"></button>
-                <button class="place-right-btn .text-caps" onclick="onTextAlignmentChange(this.value)"  value="right"><img class="icon" src="/style/images/icons/text-align-right.png"></button>
-            </div>
-            <div class="vertical-placement">
-                <button class="place-top-btn .text-caps" onclick="onTextBaselineChange(this.value)" value="top"><img class="icon" src="/style/images/icons/vertical-align-top.png"></button>
-                <button class="place-middle-btn .text-caps" onclick="onTextBaselineChange(this.value)"  value="middle"><img class="icon" src="/style/images/icons/vertical-align-middle.png"></button>
-                <button class="place-bottom-btn .text-caps" onclick="onTextBaselineChange(this.value)"  value="bottom"><img class="icon" src="/style/images/icons/vertical-align-bottom.png"></button>
-            </div>
-
-            <div>
-                <input class="rotate-input" type="range" id="rtt" name="rotate" min="0" max="359" value="0"
-                    oninput="onRotate(this.value)" />
-                <label for="rtt"><img class="icon" src="/style/images/icons/rotate.png"></label>
-            </div>
-        </div>
-
-        <!-- font edit  -->
-        <div class="font-editor">
+        <div class="main-editor main-editor-layout">
             <!-- <textarea id="multiliner" name="multiliner">line1
                 line2
                 line3</textarea> -->
-            <button class="icrease-font-size" onclick="onChangefontSize(+1)"><img class="icon" src="/style/images/icons/font-bigger.png"></button>
-            <button class="decrease-font-size" onclick="onChangefontSize(-1)"><img class="icon" src="/style/images/icons/font-smaller.png"></button>
-            <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(-1)"><img class="icon" src="/style/images/icons/shrink.png"></button>
-            <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(+1)"><img class="icon" src="/style/images/icons/enlarge.png"></button>
-            <input class="stroke-Style-color-input" type="color" value="#000000"
-                oninput="onChnageColors(this.value, 'stroke')">
-            <input class="fill-Style-color-input" type="color" value="#ffffff"
-                oninput="onChnageColors(this.value, 'fill')">
 
+            <!-- main input -->
+            <input class="meme-main-input .text-caps" type="text" name="" placeholder="enter text here"
+                oninput="onHandleMemeTextInput(this.value)" onfocusin="onInputFocus(this)">
+            <!-- general line operations -->
+            <div class="line-editor line-editor-layout">
+                <button class="add-line-btn" title="Add Line" onclick="onAddLine()">
+                    <img class="icon" src="/style/images/icons/plus.png">
+                </button>
+                <button class="switch-line-btn" onclick="onSwitchLines()">
+                    <img class="icon" src="/style/images/icons/arrows-down-up.png">
+                </button>
+                <button class="delete-line-btn" onclick="onDeleteLine()">
+                    <img class="icon" src="/style/images/icons/trash.png">
+                </button>
+            </div>
 
-            <input class="font-family-input" type="text" list="font-family" value="Impact" onblur="onFontFamilyBlur()"
-                onfocus="onFontFamilyFocus()" onchange="onFontFamilyChange(this.value)" />
-            <datalist id="font-family">
-                <option>Impact</option>
-                <option>Arial</option>
-                <option>Verdana</option>
-                <option>Tahoma</option>
-                <option>Trebuchet MS</option>
-                <option>Times New Roman</option>
-                <option>Georgia</option>
-                <option>Courier New </option>
-                <option>Brush Script MT</option>
-            </datalist>
+            <!-- line positioning -->
+            <div class="line-sizing-positioning line-sizing-positioning-layout">
+                <!-- horizontal options -->
+                <button class="place-left-btn .text-caps" onclick="onTextAlignmentChange(this.value)" value="left">
+                    <img class="icon" src="/style/images/icons/text-align-left.png">
+                </button>
+                <button class="place-center-btn .text-caps" onclick="onTextAlignmentChange(this.value)" value="center">
+                    <img class="icon" src="/style/images/icons/text-align-center.png">
+                </button>
+                <button class="place-right-btn .text-caps" onclick="onTextAlignmentChange(this.value)" value="right">
+                    <img class="icon" src="/style/images/icons/text-align-right.png">
+                </button>
+
+                <!-- font sizing -->
+                <!-- font size plus -->
+                <button class="icrease-font-size" onclick="onChangefontSize(+1)">
+                    <img class="icon" src="/style/images/icons/font-bigger.png">
+                </button>
+                <!-- font size minus -->
+                <button class="decrease-font-size" onclick="onChangefontSize(-1)">
+                    <img class="icon" src="/style/images/icons/font-smaller.png">
+                </button>
+
+                <!-- vertical options -->
+                <button class="place-top-btn .text-caps" onclick="onTextBaselineChange(this.value)" value="top">
+                    <img class="icon" src="/style/images/icons/vertical-align-top.png">
+                </button>
+                <button class="place-middle-btn .text-caps" onclick="onTextBaselineChange(this.value)" value="middle">
+                    <img class="icon" src="/style/images/icons/vertical-align-middle.png">
+                </button>
+                <button class="place-bottom-btn .text-caps" onclick="onTextBaselineChange(this.value)" value="bottom">
+                    <img class="icon" src="/style/images/icons/vertical-align-bottom.png">
+                </button>
+
+                <!-- letter spacing -->
+                <!-- space letters plus -->
+                <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(-1)">
+                    <img class="icon" src="/style/images/icons/shrink.png">
+                </button>
+                <!-- space letters minus -->
+                <button class="change-letter-sapcing" onclick="onChangeLeterSpacing(+1)">
+                    <img class="icon" src="/style/images/icons/enlarge.png">
+                </button>
+            </div>
+
+            <!-- line rotationg option -->
+            <div class="line-rotation">
+                <img class="icon" src="/style/images/icons/rotate.png">
+                <input class="rotate-input" type="range" id="rtt" name="rotate" min="0" max="359" value="0"
+                    oninput="onRotate(this.value); document.getElementById('degree-label').innerText = this.value" />
+                <label id="degree-label" for="rtt">0</label>
+            </div>
+
+            <!-- font and colors editing  -->
+            <div class="font-editor font-editor-layout">
+                <!-- font family -->
+                <input class="font-family-input" type="text" list="font-family" value="Impact"
+                    onblur="onFontFamilyBlur()" onfocus="onFontFamilyFocus()"
+                    onchange="onFontFamilyChange(this.value)" />
+                <datalist id="font-family">
+                    <option>Impact</option>
+                    <option>Arial</option>
+                    <option>Verdana</option>
+                    <option>Tahoma</option>
+                    <option>Trebuchet MS</option>
+                    <option>Times New Roman</option>
+                    <option>Georgia</option>
+                    <option>Courier New </option>
+                    <option>Brush Script MT</option>
+                </datalist>
+                <!-- stroke style AKA line color -->
+                <input class="stroke-Style-color-input" type="color" value="#000000"
+                    oninput="onChnageColors(this.value, 'stroke')">
+                <!-- fill color -->
+                <input class="fill-Style-color-input" type="color" value="#ffffff"
+                    oninput="onChnageColors(this.value, 'fill')">
+            </div>
+
+            <div class="content-services content-services-layout">
+                <a href="" download="" class="download-link" onclick=" onDownload(this)">download</a>
+                <a href="" download="" class="download-link" onclick=" onDownload(this)">share</a>
+            </div>
         </div>
-        <div class="content-services">
-            <a href="" download="" class="download-link" onclick=" onDownload(this)">download</a>
 
-        </div>
     </section>
 
     <!-- gallery -->
-    <section class="gallery"></section>
-    <img src="">
-
-    <section></section>
+    <main main-content>
+        <section class="gallery gallery-layout"></section>
+    </main>
 
     <!-- scripts -->
     <div class="scripts">

@@ -2,7 +2,7 @@
     padding-inline-end: 2rem;
 }
 
-#gallery-btn, #about-btn{
+#gallery-btn, #about-btn, #save-btn{
     font-family: 'Arial';
     color: white;
     font-size: 3rem;

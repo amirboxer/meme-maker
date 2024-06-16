@@ -20,9 +20,6 @@ body{
 header {
     background-image: linear-gradient(to right, #0f9bb4 , #2fbb72);
     border-radius:  100rem;    
-    position: fixed;
-    width: 100%;
-    z-index: 2;
 }
 
 button {

@@ -21,15 +21,14 @@ function setCanvas() {
     gElStrokeStyleInput = document.querySelector('.stroke-Style-color-input')
     gElStrokeFillInput = document.querySelector('.fill-Style-color-input')
     gElRoteteInput = document.querySelector('.rotate-input')
-
     gCanvas = document.querySelector('canvas')
     gCtx = gCanvas.getContext('2d')
     addListeners()
-    addLineToMeme()
-    renderMeme()
+    createMemeObj()
 }
 
 function renderMeme() {
+    if (!getMemeImgSrc()) return
     const originalIndex = getMemeLineIndex()
     elImg.src = getMemeImgSrc()
     elImg.onload = () => {
@@ -125,6 +124,10 @@ function getCenterOfRotation() {
 function _drawText() {
     _setDrawingContext();
     if (gLineInfocus === getMemeLineIndex()) _drawOutFrameAround();
+
+    // set fill and stroke only after frame
+    gCtx.strokeStyle = getMemeStrokeStyle();
+    gCtx.fillStyle = getMemeFillStyle();
     _drawTextContent();
     // reset rotaion
     gCtx.resetTransform();
@@ -132,8 +135,7 @@ function _drawText() {
 
 function _setDrawingContext() {
     gCtx.lineWidth = 2;
-    gCtx.strokeStyle = getMemeStrokeStyle();
-    gCtx.fillStyle = getMemeFillStyle();
+
     gCtx.font = `${getMemeFontSize()}px ${getMemeFontFamily()}`;
     gCtx.textBaseline = getMemeTextBaseline();
     gCtx.textAlign = getMemeTextAlign();
@@ -156,9 +158,9 @@ function _drawTextContent() {
 function _drawOutFrameAround() {
     const { x, y, height, width } = getTextFramePoints()
     gCtx.beginPath()
-    gCtx.lineWidth = 1
-    gCtx.strokeStyle = 'blue'
-    gCtx.fillStyle = 'orangered'
+    gCtx.lineWidth = 3
+    gCtx.strokeStyle = 'black'
+    gCtx.fillStyle = "rgba(0, 0, 0, 0.5)";
     gCtx.rect(x, y, width, height)
     gCtx.fill()
     gCtx.stroke()
@@ -410,6 +412,8 @@ function addMouseListeners() {
 function addTouchListeners() {
     // window
     window.addEventListener('touchstart', onOutOfFocus)
+    //canvas
+
     gCanvas.addEventListener('touchstart', onDown)
     gCanvas.addEventListener('touchmove', onMove)
     gCanvas.addEventListener('touchend', onUp)

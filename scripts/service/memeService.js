@@ -1,25 +1,16 @@
 'use strict'
 
-function createMemeObj(imgNum,) {
-    return {
-        selectedImgId: imgNum,
-        selectedLineIdx: 0,
-        lines: [
-            {
-                txt: 'I sometimes eat Falafel',
-                size: 20,
-                color: 'red'
-            }
-        ]
+var gMeme
+
+function createMemeObj() {
+    gMeme = {
+        imgSrc: null,
+        selectedLineIdx: null,
+        lines: []
     }
+    addLineToMeme()
 }
 
-var gMeme = {
-    imgSrc: '../../style/images/bliss.png',
-    selectedLineIdx: null,
-    lines: []
-
-}
 function isMemeEmptyOfLines() {
     return (!getMemeLines().length)
 }
@@ -81,7 +72,7 @@ function isLineDraged(lineIndex) {
 
 function clearMeme(){
     gMeme.lines = []
-    selectedLineIdx = null
+    gMeme.selectedLineIdx = null
 }
 
 // ------------------------- getters -------------------------

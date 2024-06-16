@@ -14,14 +14,15 @@
         <div class="logo">mememaker</div>
         <nav class="navbar">
             <ul class="navbar-ul navbar-ul-layout">
-                <li><button id="gallery-btn">gallery</button></li>
+                <li><button id="gallery-btn" onclick="renderGallery()">gallery</button></li>
                 <li><button id="about-btn">about</button></li>
+                <li><button id="save-btn" onclick="onShowSavedMemes()">saved</button></li>
             </ul>
         </nav>
     </header>
 
     <!-- editor -->
-    <section class="meme-creation-cover">
+    <section class="meme-creation-cover" onclick="onOutOfFocusExitEdditor(event, this)">
         <div class="meme-creation-section meme-creation-section-layout">
             <!-- canvas -->
             <div class="canvas-container canvas-container-layout">
@@ -145,7 +146,7 @@
                             src="/style/images/icons/download.png"></button>
                     <button class="share-link" onclick="onUploadImg()"><img class="icon stroke-Style-color"
                             src="/style/images/icons/share.png"></button>
-                    <button class="save-link" onclick="onDownload(this)"><img class="icon stroke-Style-color"
+                    <button class="save-link" onclick="onSaveMeme()"><img class="icon stroke-Style-color"
                             src="/style/images/icons/save.png"></button>
 
                 </div>
@@ -164,6 +165,7 @@
         <script src="scripts/service/imgsSrc.js"></script>
         <script src="scripts/service/galleyService.js"></script>
         <script src="scripts/service/memeService.js"></script>
+        <script src="scripts/service/storageService.js"></script>
         <script src="scripts/controllers/galleryController.js"></script>
         <script src="scripts/controllers/memeController.js"></script>
         <script src="scripts/service/content-services/upload-Download.js"></script>

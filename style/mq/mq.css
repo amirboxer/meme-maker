@@ -38,7 +38,7 @@
     }
 
     .meme-creation-section-layout {
-        grid-template-columns: minmax(320px, 1fr);
+        grid-template-columns: 80vw;
     }
 
 }
@@ -46,7 +46,7 @@
 @media (max-width: 650px) {
 
     html {
-        font-size: 8px;
+        font-size: 10px;
     }
 
     body {
@@ -63,7 +63,7 @@
     }
 
     .meme-creation-section-layout {
-        grid-template-columns: minmax(280px, 1fr);
+        grid-template-columns: 80vw;
     }
 }
 
@@ -71,7 +71,7 @@
 @media (max-width: 450px) {
 
     html {
-        font-size: 6px;
+        font-size: 10px;
     }
 
     body {
@@ -88,6 +88,6 @@
     }
 
     .meme-creation-section-layout {
-        grid-template-columns: minmax(160px, 1fr);
+        grid-template-columns: 80vw;
     }
 }

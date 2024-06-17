@@ -14,11 +14,12 @@ function _loadSavedMemes() {
     gSavedMemes = (loadDataInLocS(SAVED_KEY) || [])
 }
 
-function onSaveMeme() {
+function onSaveMeme(ev) {
     if (gSavedMemes.length >= MAX_SAVES) {
         gSavedMemes.splice(gSavedMemes.length - 1, 1)
     }
-    if (!gMeme.id) {gMeme.id = getRandomIntInclusive(1, 1000000)
+    if (!gMeme.id) {
+        gMeme.id = getRandomIntInclusive(1, 1000000)
         gMeme.originalSrc = getMemeImgSrc()
     }
     else{
@@ -39,7 +40,7 @@ function _memeToHTML() {
 
 function onSavedMemeEdit(elImg) {
     gMeme = findMemeInSavedMems(+elImg.getAttribute('data-id'))
-    onImgSelect(gMeme.originalSrc)
+    onImgSelect(gMeme.originalSrc, false)
 }
 
 function findMemeInSavedMems(memeId) {

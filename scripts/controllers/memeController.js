@@ -23,31 +23,22 @@ function setCanvas() {
     gElRoteteInput = document.querySelector('.rotate-input')
     gCanvas = document.querySelector('canvas')
     gCtx = gCanvas.getContext('2d')
-
     window.addEventListener('resize', resizeCanvas)
-
     addListeners()
     createMemeObj()
-
-
-    const elMemeCreationPg = document.querySelector('.meme-creation-cover')
-    elMemeCreationPg.style.display = "initial"
-    resizeCanvas()
-    elMemeCreationPg.style.display = "none"
-
 }
 
 
-function resizeCanvas() {
-    const elMemeCreationPg = document.querySelector('.meme-creation-cover')
-    const initialDisplay = elMemeCreationPg.style.display
-    elMemeCreationPg.style.display = "initial"
+function resizeCanvas(clearCanvas) {
     
     const elContainer = document.querySelector('#canvas-container')
     //* Changing the canvas dimension clears the canvas
     gCanvas.width = elContainer.clientWidth
     gCanvas.height = elContainer.clientWidth
-    elMemeCreationPg.style.display = initialDisplay
+    if (clearCanvas) {
+        clearMeme()
+        addLineToMeme()
+    }
     renderMeme()
 }
 
@@ -109,11 +100,13 @@ function getEvPos(ev) {
         //* Gets the first touch point
         ev = ev.changedTouches[0]
         //* Calc the right pos according to the touch screen
+        let rect = ev.target.getBoundingClientRect();
         pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+            x: ev.pageX - rect.left,
+            y: ev.pageY - rect.top,
         }
     }
+
     return pos
 }
 
@@ -373,6 +366,7 @@ function onDown(ev) {
     const { lineHit, lineHitIndex } = isTextClicked(pos)
     if (!lineHit) {
         focusOut()
+        console.log('not hit')
         return
     }
     // lines

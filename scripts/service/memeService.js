@@ -4,6 +4,7 @@ var gMeme
 
 function createMemeObj() {
     gMeme = {
+        id: null,
         imgSrc: null,
         selectedLineIdx: null,
         lines: []
@@ -18,7 +19,7 @@ function isMemeEmptyOfLines() {
 function _createDefaultText(textAlign = 'center', textBaseline = 'middle', x = gCanvas.width / 2, y = gCanvas.height / 2) {
     return {
         txt: '',
-        fontFamily: 'Impact', 
+        fontFamily: 'Impact',
         size: 40,
         letterSpacing: 2,
         strokeStyle: '#000000',
@@ -63,14 +64,14 @@ function isTextClicked({ x: posX, y: posY }) {
         return inRange(posX, x, x + width) && inRange(posY, y, y + height)
     })
     setMemeLineIndex(originalIndex)
-    return {lineHit, lineHitIndex}
+    return { lineHit, lineHitIndex }
 }
 
 function isLineDraged(lineIndex) {
     return gMeme.lines[lineIndex].isDraged
 }
 
-function clearMeme(){
+function clearMeme() {
     gMeme.lines = []
     gMeme.selectedLineIdx = null
 }

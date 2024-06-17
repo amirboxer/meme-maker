@@ -25,7 +25,6 @@ function onBackToGallery() {
     const elMemeCreationPg = document.querySelector('.meme-creation-cover')
     elMemeCreationPg.style.display = "none"
     createMemeObj()
-    // TODO clear canvas???
 }
 
 function _renderSavedMemes(elGallery) {

@@ -47,5 +47,5 @@ function findMemeInSavedMems(memeId) {
 }
 
 function findIndexMemeInSavedMems(memeId) {
-    return gSavedMemes.findIndex(saved => saved.meme.id === memeId).meme
+    return gSavedMemes.findIndex(saved => saved.meme.id === memeId)
 }

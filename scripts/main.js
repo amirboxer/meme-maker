@@ -18,15 +18,20 @@ function onSaveMeme() {
     if (gSavedMemes.length >= MAX_SAVES) {
         gSavedMemes.splice(gSavedMemes.length - 1, 1)
     }
-    gMeme.id = getRandomIntInclusive(1, 1000000)
-    gMeme.originalSrc = getMemeImgSrc()
+    if (!gMeme.id) {gMeme.id = getRandomIntInclusive(1, 1000000)
+        gMeme.originalSrc = getMemeImgSrc()
+    }
+    else{
+        const i = findIndexMemeInSavedMems(gMeme.id)
+        gSavedMemes.splice(i, 1)
+    }
+
     const memeHTML = _memeToHTML(gMeme)
     gSavedMemes.unshift({ html: memeHTML, meme: gMeme })
     sroteDataInLocS(SAVED_KEY, gSavedMemes)
     onBackToGallery()
     onShowSavedMemes()
 }
-
 
 function _memeToHTML() {
     return `<img src="${gCanvas.toDataURL()}" onclick="onSavedMemeEdit(this)" class="img-galerry" data-id="${gMeme.id}">`
@@ -38,7 +43,9 @@ function onSavedMemeEdit(elImg) {
 }
 
 function findMemeInSavedMems(memeId) {
-    for (var i = 0; i < gSavedMemes.length; ++i) {
-    }
     return gSavedMemes.find(saved => saved.meme.id === memeId).meme
+}
+
+function findIndexMemeInSavedMems(memeId) {
+    return gSavedMemes.findIndex(saved => saved.meme.id === memeId).meme
 }
